@@ -51,7 +51,7 @@ body { /* Credit: Ashley fernandez */
     background-color: #8EC1DA !important;
 }
 
-.bot-nav {
+.nav-tabs .nav-item.show .nav-link.bot-nav.active, .nav-tabs .nav-link.active.bot-nav {
     background-color: #BFDFEC !important;
 }
 
