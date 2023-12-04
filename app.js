@@ -28,7 +28,7 @@ app.get('/api/props/:county', (req, res) => {
   const county = req.params.county.toLowerCase(); // Assuming the county parameter is case-insensitive
   const rows = [];
 
-  fs.createReadStream('/backend/data/'+ county +'.csv')
+  fs.createReadStream(path.join(__dirname, '/backend/data/'+ county +'.csv'))
     .pipe(csv())
     .on('data', (row) => {
       // Filter rows based on the provided county
