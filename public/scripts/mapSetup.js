@@ -23,7 +23,7 @@ const setVisualBackgroundImg = async (county) => {
     );
 
 }
-fetch('/api/props/' + 'lee')
+fetch('/api/props/lee')
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
