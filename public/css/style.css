@@ -4,7 +4,7 @@
     width: 100%;
 }
 
-body { /* Credit: Ashley fernandez */
+.cloud-background { /* Credit: Ashley fernandez */
     display: flex;
     min-height: 100vh;
     margin: 0;
