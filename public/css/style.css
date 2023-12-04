@@ -38,6 +38,10 @@ body { /* Credit: Ashley fernandez */
     border-radius: 10px 10px 0px 0px; /*TL TR BR BL*/    
 }
 
+.nav-link {
+    color: black;
+}
+
 .active, .active:hover, .active:focus, .nav-link:hover, .nav-link:focus {
     border-bottom: none !important;
     border-radius: 10px 10px 0px 0px !important; /*TL TR BR BL*/
