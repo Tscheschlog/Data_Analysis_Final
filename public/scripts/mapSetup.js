@@ -32,7 +32,7 @@ const setVisualBackgroundImg = async (county) => {
             console.log(data);
             const options = data.map(option => 
                 {
-                    option.ADDRESS = option.ADDRESS.trim();
+                    option.ADDRESS = option.ADDRESS.replace(/^\s+|\s+$/gm,'');
                     if (option.ADDRESS != undefined || option.ADDRESS != "")
                         return `<option value="${option.ADDRESS}">${option.ADDRESS}</option>`
                 });
