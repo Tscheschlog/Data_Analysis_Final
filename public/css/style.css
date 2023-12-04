@@ -45,6 +45,7 @@ body { /* Credit: Ashley fernandez */
 .active, .active:hover, .active:focus, .nav-link:hover, .nav-link:focus, .nav-tabs {
     border-bottom: none !important;
     border-radius: 10px 10px 0px 0px !important; /*TL TR BR BL*/
+    background-color: none !important;
 }
 
 .nav-item:hover {
