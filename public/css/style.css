@@ -42,7 +42,7 @@ body { /* Credit: Ashley fernandez */
     color: black;
 }
 
-.active, .active:hover, .active:focus, .nav-link:hover, .nav-link:focus .nav-tabs {
+.active, .active:hover, .active:focus, .nav-link:hover, .nav-link:focus, .nav-tabs {
     border-bottom: none !important;
     border-radius: 10px 10px 0px 0px !important; /*TL TR BR BL*/
 }
