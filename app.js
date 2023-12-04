@@ -30,11 +30,8 @@ app.get('/api/props/:county', (req, res) => {
 
   fs.createReadStream(path.join(__dirname, '/backend/data/'+ county +'.csv'))
     .pipe(csv())
-    .on('data', (row) => {
-      // Filter rows based on the provided county
-      if (row.LOCATION.toLowerCase() === county) {
+    .on('data', (row) => {      
         rows.push(row);
-      }
     })
     .on('end', () => {
       // Send the filtered rows as JSON
