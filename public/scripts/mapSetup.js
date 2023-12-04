@@ -31,12 +31,13 @@ fetch('/api/props/lee')
         return response.json();
     })
     .then(data => {
-        const options = data.map(option => `<option value="${option.value}">${option.label}</option>`);
+        console.log(data);
+        // const options = data.map(option => `<option value="${option.value}">${option.label}</option>`);
 
-        $('#view-tab').html(
-            '<div class="visual-body">' +
-            `<select id="dropdown">${options.join('')}</select></div>`
-        );
+        // $('#view-tab').html(
+        //     '<div class="visual-body">' +
+        //     `<select id="dropdown">${options.join('')}</select></div>`
+        // );
     })
     .catch(error => {
         console.error('Error fetching options:', error);
