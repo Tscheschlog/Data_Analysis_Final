@@ -24,6 +24,29 @@ app.get('/api/enum',  (req, res) => {
   });
 });
 
+app.get('/api/props/:county', (req, res) => {
+  const county = req.params.county.toLowerCase(); // Assuming the county parameter is case-insensitive
+  const rows = [];
+  const filePath = path.join(__dirname, '/backend/data/'+ county +'.csv');
+
+  fs.createReadStream(filePath)
+    .pipe(csv())
+    .on('data', (row) => {
+      // Filter rows based on the provided county
+      if (row.LOCATION.toLowerCase() === county) {
+        rows.push(row);
+      }
+    })
+    .on('end', () => {
+      // Send the filtered rows as JSON
+      res.json(rows);
+    })
+    .on('error', (error) => {
+      console.error('Error reading CSV:', error);
+      res.status(500).send('Internal Server Error');
+    });
+});
+
 app.get('/api/counties_json', (req, res) => {
   const filePath = path.join(__dirname, '/backend/data/florida_counties.json');
 

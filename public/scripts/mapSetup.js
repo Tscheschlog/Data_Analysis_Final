@@ -15,11 +15,31 @@ const setVisualBackgroundImg = async (county) => {
         '<div class="visual-body">' +
         '<img src="' + county + '_linegraph.png" /></div>'
     );
+
+    let lowerCountyName = county.substring(0, county.indexOf("County") - 1);
     $('#visual-3').html(
         '<div class="visual-body">' +
-        '<img src="sales_vs_income_' + county.substring(0, county.indexOf("County") - 1) + '.png" /></div>'
+        '<img src="sales_vs_income_' + lowerCountyName + '.png" /></div>'
     );
-    $('#view-tab').html(county + ' Properties');
+
+    fetch('/api/props/' + lowerCountyName)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const options = data.map(option => `<option value="${option.value}">${option.label}</option>`);
+
+            $('#view-tab').html(
+                '<div class="visual-body">' +
+                `<select id="dropdown">${options.join('')}</select></div>`
+            );
+        })
+        .catch(error => {
+            console.error('Error fetching options:', error);
+        });
 }
 
 fetch('/api/counties_json')
