@@ -37,8 +37,8 @@ const setVisualBackgroundImg = async (county) => {
                 });
 
             $('#view-tab').html(
-                '<div class="visual-body">' +
-                `<select id="dropdown">${options.join('')}</select></div>`
+                '<div class="visual-body form-group">' +
+                `<select id="dropdown" class="form-control">${options.join('')}</select></div>`
             );
         })
         .catch(error => {
