@@ -13,10 +13,12 @@
     </style>
 </head>
 <body>
-    <h2>Florida Property Tool</h2>
+    <h2 class="m-3">Florida Property Tool</h2>
     <div class="container">
         <div class="row">
-            <div class="col-6 border" id="map-container">
+            <div class="col-6" id="map-container">
+                <input type="checkbox" id="toggleMarkers" checked>
+                <label for="toggleMarkers">Show Properties</label>
                 <div id="map"></div>
             </div>
             <div class="col-6 p-0">
@@ -32,8 +34,8 @@
                     </ul>
                 </div>
                 <!-- Tab panes for TOP BOX -->
-                <div class="col-12 border box p-0">
-                    <div class="tab-content box">
+                <div class="col-12 box p-0">
+                    <div class="tab-content content-box">
                         <div class="tab-pane fade show active" id="search-tab" role="tabpanel">
                             <form class="col-md-6">
                                 <div class="mb-3">
@@ -46,37 +48,35 @@
                             </form>
                         </div>
                         <div class="tab-pane fade" id="view-tab" role="tabpanel">
-                            <div class="border">View Tab</div>
+                            <div class="">View Tab</div>
                         </div>
                     </div>
                 </div>
                 <!-- Nav tabs for BOTTOM BOX -->
-                <div class="col-12 p-0 mt-1">
+                <div class="col-12 p-0 mt-3">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="stats-nav-tab" data-toggle="tab" href="#stats-tab" role="tab">Statistics</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="visual-2-tab" data-toggle="tab" href="#visual-2" role="tab">Visual 2</a>
+                            <a class="nav-link" id="visual-2-tab" data-toggle="tab" href="#visual-2" role="tab">Avg Value of Sales</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="visual-3-tab" data-toggle="tab" href="#visual-3" role="tab">Visual 3</a>
+                            <a class="nav-link" id="visual-3-tab" data-toggle="tab" href="#visual-3" role="tab">Avg Income vs Sales</a>
                         </li>
                     </ul>
                 </div>
                 <!-- Tab panes for BOTTOM BOX -->
-                <div class="col-12 border box p-0">
-                    <div class="tab-content box">
+                <div class="col-12 box p-0">
+                    <div class="tab-content content-box">
                         <div class="tab-pane fade show active" id="stats-tab" role="tabpanel">
-                            <div class="border">
-                                <!-- THIS IS THE SEAR --> Statistics tab
-                            </div>
+                            <div class="">Statistics tab</div>
                         </div>
                         <div class="tab-pane fade" id="visual-2" role="tabpanel">
-                            <div class="border">Visual 2</div>
+                            
                         </div>
                         <div class="tab-pane fade" id="visual-3" role="tabpanel">
-                            <div class="border">Visual 3</div>
+                            
                         </div>
                     </div>
                 </div>
@@ -90,6 +90,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 <script src="scripts/boxLogic.js"></script>
 <script src="scripts/mapSetup.js"></script>
 </html>

@@ -1,3 +1,6 @@
 {
-    "Test": "Hello"
+    "Fort Myers": {
+        "Household_Income": 100000,
+        "Mean_House_Value": 1000 
+    }
 }

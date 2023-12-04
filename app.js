@@ -10,23 +10,18 @@ const port = 3000;
 // Serve static files from the "public" directory
 app.use(express.static('public'));
 
-const saveSearhedCounties = (searchedCounty, searchedEntities) => {
+app.get('/api/enum',  (req, res) => {
+  const filePath = path.join(__dirname, '/backend/data/florida_counties.csv');
 
-  var countyEntries = {
-    [searchedCounty]: searchedEntities
-  };
-
-  fs.writeFile ("file.json",  JSON.stringify(countyEntries), function(err) {
-    if (err) throw err;
-    console.log('complete');
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.header('Content-Type', 'text/csv');
+      res.send(data);
     }
-  );
-
-}
-
-app.get('api/:visual', (req, res) => {
-  
-
+  });
 });
 
 app.get('/api/counties_json', (req, res) => {
@@ -43,67 +38,55 @@ app.get('/api/counties_json', (req, res) => {
   });
 });
 
-app.get('/api/get_svg/:county', (req, res) => {
-  const county = req.query.county;
+app.get('/api/map_pins/:county', (req, res) => {
+  const countyParam = req.params.county;
 
-  if (!county) {
-    return res.status(400).send('Please provide a county parameter.');
-  }
+  const filePath = path.join(__dirname, '/backend/data/' + countyParam + '.csv');
 
-  const pythonProcess = spawn('python', ['/backend/scripts/getCountySVG.py', county]);
-
-  let svgContent = '';
-
-  // Collect data from the Python script
-  pythonProcess.stdout.on('data', (data) => {
-    svgContent += data.toString();
-  });
-
-  pythonProcess.on('close', (code) => {
-    if (code === 0) {
-      res.type('image/svg+xml').send(svgContent);
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
     } else {
-      res.status(500).send('Error running Python script');
+      res.header('Content-Type', 'text/csv');
+      res.send(data);
     }
   });
 });
 
-// function convertCsvToJson(filePath, callback) {
-//   const jsonData = {};
+app.get('/api/line_graph/:county', (req, res) => {
+  const county = req.params.county;
+  
+  // // Run the Python script with the county parameter
+  const spawn = require('child_process').spawn;
+  const process = spawn('python', [path.join(__dirname, '/backend/scripts/getLineGraph.py'), county]);
 
-//   fs.createReadStream(filePath)
-//     .pipe(csv())
-//     .on('data', (row) => {
-//       const countyName = row.CITY;
+  process.stdout.on('data', (data) => {
+    res.sendFile(data);
+   });
 
-//       if (!jsonData[countyName]) {
-//         jsonData[countyName] = [];
-//       }
+  process.stderr.on('data', (data) => {
+    console.error(`Error: ${data}`);
+    res.status(500).send('Internal Server Error');
+  });
+});
 
-//       delete row.CITY; // Remove the CITY property from the row
+app.get('/api/bar_graph/:county', (req, res) => {
+  const county = req.params.county;
+  
+  // // Run the Python script with the county parameter
+  const spawn = require('child_process').spawn;
+  const process = spawn('python', [path.join(__dirname, '/backend/scripts/getBarGraph.py'), county]);
 
-//       jsonData[countyName].push(row);
-//     })
-//     .on('end', () => {
-//       callback(null, jsonData);
-//     })
-//     .on('error', (error) => {
-//       callback(error, null);
-//     });
-// }
+  process.stdout.on('data', (data) => {
+    res.sendFile(data);
+   });
 
-// // Example usage:
-// const csvFilePath = './public/data/fl.csv';
-
-// convertCsvToJson(csvFilePath, (error, result) => {
-//   if (error) {
-//     console.error('Error:', error);
-//   } else {
-//     var currJSON = JSON.parse(fs.readFileSync(__dirname + "/file.json").toString())
-//     console.log(Object.keys(result));
-//   }
-// });
-
+  process.stderr.on('data', (data) => {
+    console.error(`Error: ${data}`);
+    res.status(500).send('Internal Server Error');
+  });
+});
 
 // Serve index.html at the root
 app.get('/', (req, res) => {

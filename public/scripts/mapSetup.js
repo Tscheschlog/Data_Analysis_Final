@@ -1,28 +1,30 @@
+let map = L.map('map').setView([27.9944024, -81.760254], 7); // Set the initial view to Florida
+let markers = []; 
 
-const setVisualBackgroundImg = (county) => {
-    $('#visual-2').html(county);
-    console.log(county);
+const setVisualBackgroundImg = async (county) => {
 
-    fetch(`/api/get_svg/${county}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(svgContent => {
-            // Use the SVG content as needed
-            console.log(svgContent);
-        })
-        .catch(error => {
-            console.error('Error fetching SVG:', error.message);
-        });
+    $('#stats-tab').html(
+        '<div class="visual-body">' +
+        
+        '<p>' + county + ' Statistics</p>' +
+        '<div class="row"></div>'
+        
+        + '</div>'
+    );
+    $('#visual-2').html(
+        '<div class="visual-body">' +
+        '<img src="' + county + '_linegraph.png" /></div>'
+    );
+    $('#visual-3').html(
+        '<div class="visual-body">' +
+        '<img src="sales_vs_income_' + county.substring(0, county.indexOf("County") - 1) + '.png" /></div>'
+    );
+    $('#view-tab').html(county + ' Properties');
 }
 
 fetch('/api/counties_json')
     .then(response => response.json())
     .then(data => {
-        const map = L.map('map').setView([27.9944024, -81.760254], 7); // Set the initial view to Florida
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
@@ -35,6 +37,7 @@ fetch('/api/counties_json')
             fillOpacity: 0.2
         };
 
+
         L.geoJSON(data).addTo(map);
         L.geoJSON(data, {
             style: defaultStyle,
@@ -43,9 +46,18 @@ fetch('/api/counties_json')
                     mouseover: highlightFeature,
                     mouseout: resetHighlight,
                     click: function (e) {
+                        console.log(layer.feature.properties.NAMELSADCO.toLowerCase().substring(0, layer.feature.properties.NAMELSADCO.indexOf("County")).trim());
                         setVisualBackgroundImg(layer.feature.properties.NAMELSADCO); 
-    
-                        console.log(layer.feature.properties.NAMELSADCO);
+                        removeMarkers();
+                        
+                        fetch('/api/map_pins/' + layer.feature.properties.NAMELSADCO.toLowerCase().substring(0, layer.feature.properties.NAMELSADCO.indexOf("County")).trim())
+                            .then(response => response.text())
+                            .then(data => {
+                                createMarkers(data);
+                            })
+                            .catch(error => {
+                                console.error('Error fetching data:', error);
+                            });
                     }
                 });
             }
@@ -79,3 +91,88 @@ fetch('/api/counties_json')
             layer.setStyle(defaultStyle);
         }
 });   
+
+// #################################################################
+// #### Toggle Properties Logic ####################################
+// #################################################################
+
+function createMarkers(data) {
+    const rows = Papa.parse(data, { header: true, dynamicTyping: true }).data;
+
+    rows.forEach(row => {
+        const { LATITUDE, LONGITUDE, ADDRESS, PRICE, BEDS, BATHS } = row;
+
+        if (LATITUDE && LONGITUDE) {
+            const marker = L.marker([LATITUDE, LONGITUDE])
+                .bindPopup(`<b>${ADDRESS}</b><br>${PRICE}, ${BEDS} beds, ${BATHS} baths`)
+                .addTo(map);
+            markers.push(marker);
+        }
+    });
+}
+
+function removeMarkers() {
+    markers.forEach(marker => {
+        map.removeLayer(marker);
+    });
+    markers = []; // Clear the markers array
+}
+
+
+// fetch('/api/map_pins/lee')
+//     .then(response => response.text())
+//     .then(data => {
+//         createMarkers(data);
+//     })
+//     .catch(error => {
+//         console.error('Error fetching data:', error);
+//     });
+// fetch('/api/map_pins/other')
+//     .then(response => response.text())
+//     .then(data => {
+//         createMarkers(data);
+//     })
+//     .catch(error => {
+//         console.error('Error fetching data:', error);
+//     });
+
+const toggleCheckbox = document.getElementById('toggleMarkers');
+toggleCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+        // Show markers
+        markers.forEach(marker => {
+            map.addLayer(marker);
+        });
+    } else {
+        // Hide markers
+        markers.forEach(marker => {
+            map.removeLayer(marker);
+        });
+    }
+});
+
+// #################################################################
+// #### Line Graph Logic ###########################################
+// #################################################################
+
+const imgElement = document.getElementById('img-vis-1');
+
+// // Lee County Line Graph
+// let offset = 72;
+// for(let i = offset + 0; i <= offset + 5; i++) {
+//     fetch(`/api/line_graph/${i}`)
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error(`HTTP error! Status: ${response.status}`);
+//             }
+//             return response.blob();
+//         })
+//         .then(blob => {
+//             const url = URL.createObjectURL(blob);
+//             imgElement.src = url;
+//         })
+//         .catch(error => {
+//             console.error('Error fetching image:', error);
+//         });
+//     console.log(i);
+// }
