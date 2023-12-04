@@ -29,7 +29,7 @@ app.get('/api/props/:county', (req, res) => {
   const rows = [];
   const filePath = path.join(__dirname, '/backend/data/'+ county +'.csv');
 
-  fs.createReadStream(filePath)
+  fs.createReadStream('/backend/data/'+ county +'.csv')
     .pipe(csv())
     .on('data', (row) => {
       // Filter rows based on the provided county

@@ -22,7 +22,7 @@ const setVisualBackgroundImg = async (county) => {
         '<img src="sales_vs_income_' + lowerCountyName + '.png" /></div>'
     );
 
-    fetch('/api/props/' + lowerCountyName)
+    fetch('/api/props/' + lowerCountyName.toLowerCase())
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
