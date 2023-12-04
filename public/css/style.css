@@ -49,10 +49,12 @@ body { /* Credit: Ashley fernandez */
 
 .top-nav {
     background-color: #8EC1DA !important;
+    margin-bottom: auto !important;
 }
 
 .bot-nav {
     background-color: #BFDFEC !important;
+    margin-bottom: auto !important;
 }
 
 .nav-item:hover {
