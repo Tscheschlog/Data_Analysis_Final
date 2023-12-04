@@ -48,11 +48,11 @@ body { /* Credit: Ashley fernandez */
 }
 
 .top-nav {
-    background: #8EC1DA !important;
+    background-color: #8EC1DA !important;
 }
 
 .bot-nav {
-    background: #BFDFEC !important;
+    background-color: #BFDFEC !important;
 }
 
 .nav-item:hover {
