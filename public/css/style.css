@@ -47,7 +47,7 @@ body { /* Credit: Ashley fernandez */
     border-radius: 10px 10px 0px 0px !important; /*TL TR BR BL*/
 }
 
-.nav-tabs .nav-item.show .top-nav.active {
+.nav-tabs .nav-item.show .nav-link.top-nav, .nav-tabs .nav-link.active.top-nav {
     background-color: #8EC1DA !important;
 }
 
