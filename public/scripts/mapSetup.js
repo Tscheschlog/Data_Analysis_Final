@@ -13,13 +13,13 @@ const setVisualBackgroundImg = async (county) => {
     );
     $('#visual-2').html(
         '<div class="visual-body">' +
-        '<img src="' + county + '_linegraph.png" /></div>'
+        '<img src="assets/' + county + '_linegraph.png" /></div>'
     );
 
     let lowerCountyName = county.substring(0, county.indexOf("County") - 1);
     $('#visual-3').html(
         '<div class="visual-body">' +
-        '<img src="sales_vs_income_' + lowerCountyName + '.png" /></div>'
+        '<img src="assets/sales_vs_income_' + lowerCountyName + '.png" /></div>'
     );
 
 }
