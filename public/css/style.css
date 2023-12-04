@@ -5,11 +5,7 @@
 }
 
 body { /* Credit: Ashley fernandez */
-    display: flex;
-    min-height: 100vh;
     margin: 0;
-    align-items: center;
-    justify-content: center;
     background-color: #bfdfec;
     font-family: system-ui, calibri, serif;
     background-repeat: repeat-x;
