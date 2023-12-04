@@ -32,7 +32,7 @@ const setVisualBackgroundImg = async (county) => {
             console.log(data);
             const options = data.map(option => 
                 {
-                    if (option.ADDRESS != undefined || option.ADDRESS != ""  || option.ADDRESS.length() != 0)
+                    if (option.ADDRESS != undefined || option.ADDRESS != "")
                         return `<option value="${option.ADDRESS}">${option.ADDRESS}</option>`
                 });
 
