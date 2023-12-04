@@ -47,14 +47,12 @@ body { /* Credit: Ashley fernandez */
     border-radius: 10px 10px 0px 0px !important; /*TL TR BR BL*/
 }
 
-.top-nav {
+.top-nav:active {
     background-color: #8EC1DA !important;
-    margin-bottom: auto !important;
 }
 
-.bot-nav {
+.bot-nav:active {
     background-color: #BFDFEC !important;
-    margin-bottom: auto !important;
 }
 
 .nav-item:hover {
