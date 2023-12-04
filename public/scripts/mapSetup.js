@@ -22,25 +22,25 @@ const setVisualBackgroundImg = async (county) => {
         '<img src="sales_vs_income_' + lowerCountyName + '.png" /></div>'
     );
 
-    fetch('/api/props/' + lowerCountyName.toLowerCase())
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const options = data.map(option => `<option value="${option.value}">${option.label}</option>`);
-
-            $('#view-tab').html(
-                '<div class="visual-body">' +
-                `<select id="dropdown">${options.join('')}</select></div>`
-            );
-        })
-        .catch(error => {
-            console.error('Error fetching options:', error);
-        });
 }
+fetch('/api/props/' + 'lee')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const options = data.map(option => `<option value="${option.value}">${option.label}</option>`);
+
+        $('#view-tab').html(
+            '<div class="visual-body">' +
+            `<select id="dropdown">${options.join('')}</select></div>`
+        );
+    })
+    .catch(error => {
+        console.error('Error fetching options:', error);
+    });
 
 fetch('/api/counties_json')
     .then(response => response.json())
