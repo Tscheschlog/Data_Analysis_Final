@@ -30,7 +30,11 @@ const setVisualBackgroundImg = async (county) => {
         })
         .then(data => {
             console.log(data);
-            const options = data.map(option => `<option value="${option.ADDRESS}">${option.ADDRESS}</option>`);
+            const options = data.map(option => 
+                {
+                    if (option.ADDRESS != undefined)
+                        return `<option value="${option.ADDRESS}">${option.ADDRESS}</option>`
+                });
 
             $('#view-tab').html(
                 '<div class="visual-body">' +
