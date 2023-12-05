@@ -161,6 +161,20 @@ const setVisualBackgroundImg = async (county) => {
     else
         oneYear.style.color = 'green';
 
+    if(countyStats.three_year < 0)
+        threeYear.style.color = 'red';
+    else
+        threeYear.style.color = 'green';
+
+    if(countyStats.five_year < 0)
+        fiveYear.style.color = 'red';
+    else
+        fiveYear.style.color = 'green';
+
+    if(countyStats.ten_year < 0)
+        tenYear.style.color = 'red';
+    else
+        tenYear.style.color = 'green';
         
 }
 
