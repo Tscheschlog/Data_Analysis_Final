@@ -84,6 +84,14 @@ const setVisualBackgroundImg = async (county) => {
             document.getElementById('property-dropdown').addEventListener('change', function() {
                 setPropertyView();
             });
+
+            $('#stats-tab').html(
+                `
+                <div>
+                    Updated stats
+                </div>
+                `
+            )
         })
         .catch(error => {
             console.error('Error fetching options:', error);
