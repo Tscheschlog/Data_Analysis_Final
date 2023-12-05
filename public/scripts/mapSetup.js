@@ -134,24 +134,32 @@ const setVisualBackgroundImg = async (county) => {
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 1 Year</label></span>
-                    <p id="one-year-tag" class="form-control m-0">${countyStats.one_year}</p>
+                    <p id="one-year-tag" class="form-control m-0">${countyStats.one_year}%</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 3 Years</label></span>
-                    <p id="three-year-tag" class="form-control m-0">${countyStats.three_year}</p>
+                    <p id="three-year-tag" class="form-control m-0">${countyStats.three_year}%</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 5 Years</label></span>
-                    <p id="five-year-tag" class="form-control m-0">${countyStats.five_year}</p>
+                    <p id="five-year-tag" class="form-control m-0">${countyStats.five_year}%</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 10 Years</label></span>
-                    <p id="ten-year-tag" class="form-control m-0">${countyStats.ten_year}</p>
+                    <p id="ten-year-tag" class="form-control m-0">${countyStats.ten_year}%</p>
                 </div>
             </div>
             `
         )
-}
+        let oneYear = document.getElementById('one-year-tag');
+        let threeYear = document.getElementById('three-year-tag');
+        let fiveYear = document.getElementById('five-year-tag');
+        let tenYear = document.getElementById('ten-year-tag');
+
+        if(countyStats['one_year'] < 0)
+            oneYear.style.color = 'red';
+        else
+            oneYear.style.color = 'green';
 
 
 fetch('/api/counties_json')
