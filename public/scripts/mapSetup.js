@@ -12,6 +12,7 @@ const setPropertyView = () => {
 
 
     document.getElementById('price-tag').innerText = "$"+ propertyBook[selectedValue].PRICE + ".00";
+    document.getElementById('square-feet-tag').innerText = propertyBook[selectedValue]['SQUARE FEET'] + " square feet";
 }
 
 const setVisualBackgroundImg = async (county) => {
