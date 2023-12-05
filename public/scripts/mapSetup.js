@@ -2,13 +2,6 @@ let map = L.map('map').setView([27.9944024, -81.760254], 7); // Set the initial 
 let markers = []; 
 
 // #################################################################
-// #### Initial Load Logic #########################################
-// #################################################################
-
-
-
-
-// #################################################################
 // #### Onclick County Logic #######################################
 // #################################################################
 
@@ -186,7 +179,7 @@ function removeMarkers() {
 //         console.error('Error fetching data:', error);
 //     });
 
-const toggleCheckbox = $('#toggleMarkers');
+const toggleCheckbox = document.getElementById('toggleMarkers');
 toggleCheckbox.addEventListener('change', function () {
     if (this.checked) {
         // Show markers
