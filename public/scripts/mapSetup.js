@@ -85,17 +85,24 @@ const setVisualBackgroundImg = async (county) => {
                 setPropertyView();
             });
 
-            $('#stats-tab').html(
-                `
-                <div>
-                    Updated stats
-                </div>
-                `
-            )
+
+
+            
         })
         .catch(error => {
             console.error('Error fetching options:', error);
         });
+        
+        $('#stats-tab').html(
+            `
+            <div>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Mean Price</label></span>
+                    <p id="mean-tag" class="form-control m-0"></p>
+                </div>
+            </div>
+            `
+        )
 }
 
 
