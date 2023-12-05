@@ -57,7 +57,9 @@ const setVisualBackgroundImg = async (county) => {
                     if(maxYear < option['YEAR BUILT']) {
                         maxYear = option['YEAR BUILT'];
                     }
-                });
+                }
+                );
+                console.log("min: " + minYear + "\nmax: " + maxYear);
 
             $('#view-tab').html(
                 '<div class="visual-body form-group">' +
