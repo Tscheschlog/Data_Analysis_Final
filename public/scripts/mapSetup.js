@@ -32,6 +32,8 @@ const setVisualBackgroundImg = async (county) => {
         '<div class="visual-body">' +
         '<img src="assets/sales_vs_income_' + lowerCountyName + '.png" /></div>'
     );
+    let minYear = -1;
+    let maxYear = -1;
     fetch('/api/props/' + lowerCountyName)
         .then(response => {
             if (!response.ok) {
@@ -43,8 +45,18 @@ const setVisualBackgroundImg = async (county) => {
             console.log(data);
             const options = data.map(option => 
                 {
+                    if(minYear == -1 && maxYear == -1) {
+                        minYear = option['YEAR BUILT'];
+                        maxYear = option['YEAR BUILT'];
+                    }
                     if (option.ADDRESS != undefined && option.ADDRESS != "")
                         return `<option value="${option.ADDRESS}">${option.ADDRESS}</option>`
+                    if(minYear > option['YEAR BUILT']) {
+                        minYear = option['YEAR BUILT'];
+                    }
+                    if(maxYear < option['YEAR BUILT']) {
+                        maxYear = option['YEAR BUILT'];
+                    }
                 });
 
             $('#view-tab').html(
