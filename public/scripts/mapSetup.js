@@ -130,23 +130,23 @@ const setVisualBackgroundImg = async (county) => {
                 <div class="p-2">${county}'s Statistics</div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Mean Price</label></span>
-                    <p id="mean-tag" class="form-control m-0">${countyStats.mean}</p>
+                    <p id="mean-tag" class="form-control m-0">${countyStats.mean.toFixed(2)}</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 1 Year</label></span>
-                    <p id="one-year-tag" class="form-control m-0">${countyStats.one_year}</p>
+                    <p id="one-year-tag" class="form-control m-0">${countyStats.one_year.toFixed(2)}</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 3 Years</label></span>
-                    <p id="three-year-tag" class="form-control m-0">${countyStats.three_year}</p>
+                    <p id="three-year-tag" class="form-control m-0">${countyStats.three_year.toFixed(2)}</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 5 Years</label></span>
-                    <p id="five-year-tag" class="form-control m-0">${countyStats.five_year}</p>
+                    <p id="five-year-tag" class="form-control m-0">${countyStats.five_year.toFixed(2)}</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 10 Years</label></span>
-                    <p id="ten-year-tag" class="form-control m-0">${countyStats.ten_year}</p>
+                    <p id="ten-year-tag" class="form-control m-0">${countyStats.ten_year.toFixed(2)}</p>
                 </div>
             </div>
             `
