@@ -53,7 +53,7 @@ const setVisualBackgroundImg = async (county) => {
                     <div id="current-house-view">
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Price</label></span>
-                            <p id="price-tag"></p>
+                            <p id="price-tag" class="form-control"></p>
                         </div>
                 
                 
