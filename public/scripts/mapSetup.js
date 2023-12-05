@@ -65,7 +65,7 @@ const setVisualBackgroundImg = async (county) => {
                 console.log('Selected option:', selectedValue);
             
             
-                document.getElementById('price-tag').value = propertyBook[selectedValue].PRICE;
+                document.getElementById('price-tag').text = propertyBook[selectedValue].PRICE;
             });
         })
         .catch(error => {
