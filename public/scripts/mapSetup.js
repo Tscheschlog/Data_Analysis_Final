@@ -261,7 +261,7 @@ function createMarkers(data) {
 
         if (LATITUDE && LONGITUDE) {
             const marker = L.marker([LATITUDE, LONGITUDE])
-                .bindPopup(`<b>${ADDRESS}</b><br>${PRICE}, ${BEDS} beds, ${BATHS} baths`)
+                .bindPopup(`<div class="county-popup"><b>${ADDRESS}</b><br>${PRICE}, ${BEDS} beds, ${BATHS} baths</div>`)
                 .addTo(map);
             markers.push(marker);
         }
