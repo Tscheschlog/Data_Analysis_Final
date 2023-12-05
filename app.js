@@ -24,6 +24,20 @@ app.get('/api/enum',  (req, res) => {
   });
 });
 
+app.get('/api/stats/:county', (req, res) => {
+  const county = req.params.county;
+  let data = {
+    mean: 0,
+    one_year: 0,
+    one_year: 0,
+    one_year: 0
+  };
+
+
+
+
+});
+
 app.get('/api/props/:county', (req, res) => {
   const county = req.params.county.toLowerCase(); // Assuming the county parameter is case-insensitive
   const rows = [];
