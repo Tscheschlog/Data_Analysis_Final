@@ -92,10 +92,11 @@ const setVisualBackgroundImg = async (county) => {
         .catch(error => {
             console.error('Error fetching options:', error);
         });
-        
+
         $('#stats-tab').html(
             `
             <div>
+                <div>${county}'s Statistics</div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Mean Price</label></span>
                     <p id="mean-tag" class="form-control m-0"></p>
