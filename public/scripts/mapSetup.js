@@ -97,70 +97,72 @@ const setVisualBackgroundImg = async (county) => {
             console.error('Error fetching options:', error);
         });
 
-        let countyStats = {
-            mean: 0,
-            one_year: 0,
-            three_year: 0,
-            five_year: 0,
-            ten_year: 0
-        };
+    let countyStats = {
+        mean: 0,
+        one_year: 0,
+        three_year: 0,
+        five_year: 0,
+        ten_year: 0
+    };
 
-        let data = await fetch('/api/stats/' + county)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log(data);
-                        countyStats.mean = data[20]['realmediansalesprice'];
-                        countyStats.one_year = ((data[20].realmediansalesprice - data[19].realmediansalesprice) / data[20].realmediansalesprice * 100).toFixed(2);
-                        countyStats.three_year = ((data[20].realmediansalesprice - data[17].realmediansalesprice) / data[20].realmediansalesprice * 100).toFixed(2);
-                        countyStats.five_year = ((data[20].realmediansalesprice - data[15].realmediansalesprice) / data[20].realmediansalesprice * 100).toFixed(2);
-                        countyStats.ten_year = ((data[20].realmediansalesprice - data[10].realmediansalesprice) / data[20].realmediansalesprice * 100).toFixed(2);
-                    })
-        
-        console.log(countyStats);
-        
+    let data = await fetch('/api/stats/' + county)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    countyStats.mean = data[20]['realmediansalesprice'];
+                    countyStats.one_year = ((data[20].realmediansalesprice - data[19].realmediansalesprice) / data[20].realmediansalesprice * 100).toFixed(2);
+                    countyStats.three_year = ((data[20].realmediansalesprice - data[17].realmediansalesprice) / data[20].realmediansalesprice * 100).toFixed(2);
+                    countyStats.five_year = ((data[20].realmediansalesprice - data[15].realmediansalesprice) / data[20].realmediansalesprice * 100).toFixed(2);
+                    countyStats.ten_year = ((data[20].realmediansalesprice - data[10].realmediansalesprice) / data[20].realmediansalesprice * 100).toFixed(2);
+                })
+    
+    console.log(countyStats);
+    
 
-        $('#stats-tab').html(
-            `
-            <div>
-                <div class="p-2">${county}'s Statistics</div>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Mean Price</label></span>
-                    <p id="mean-tag" class="form-control m-0">${countyStats.mean}</p>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 1 Year</label></span>
-                    <p id="one-year-tag" class="form-control m-0">${countyStats.one_year}%</p>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 3 Years</label></span>
-                    <p id="three-year-tag" class="form-control m-0">${countyStats.three_year}%</p>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 5 Years</label></span>
-                    <p id="five-year-tag" class="form-control m-0">${countyStats.five_year}%</p>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 10 Years</label></span>
-                    <p id="ten-year-tag" class="form-control m-0">${countyStats.ten_year}%</p>
-                </div>
+    $('#stats-tab').html(
+        `
+        <div>
+            <div class="p-2">${county}'s Statistics</div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Mean Price</label></span>
+                <p id="mean-tag" class="form-control m-0">${countyStats.mean}</p>
             </div>
-            `
-        )
-        let oneYear = document.getElementById('one-year-tag');
-        let threeYear = document.getElementById('three-year-tag');
-        let fiveYear = document.getElementById('five-year-tag');
-        let tenYear = document.getElementById('ten-year-tag');
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 1 Year</label></span>
+                <p id="one-year-tag" class="form-control m-0">${countyStats.one_year}%</p>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 3 Years</label></span>
+                <p id="three-year-tag" class="form-control m-0">${countyStats.three_year}%</p>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 5 Years</label></span>
+                <p id="five-year-tag" class="form-control m-0">${countyStats.five_year}%</p>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 10 Years</label></span>
+                <p id="ten-year-tag" class="form-control m-0">${countyStats.ten_year}%</p>
+            </div>
+        </div>
+        `
+    )
+    let oneYear = document.getElementById('one-year-tag');
+    let threeYear = document.getElementById('three-year-tag');
+    let fiveYear = document.getElementById('five-year-tag');
+    let tenYear = document.getElementById('ten-year-tag');
 
-        if(countyStats['one_year'] < 0)
-            oneYear.style.color = 'red';
-        else
-            oneYear.style.color = 'green';
+    if(countyStats.one_year < 0)
+        oneYear.style.color = 'red';
+    else
+        oneYear.style.color = 'green';
 
+        
+}
 
 fetch('/api/counties_json')
     .then(response => response.json())
