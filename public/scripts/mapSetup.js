@@ -49,8 +49,7 @@ const setVisualBackgroundImg = async (county) => {
                     <select id="dropdown" class="form-control">${options.join('')}</select></div>
                     <div id="current-house-view">
                         <div class="form-group">
-                            <i class="bi bi-tags-fill"></i>
-                            <span class="form-control">${123}</span>
+                            <span class="form-control"><label class="form-label"><i class="bi bi-tags-fill"></i> Price</label>${123}</span>
                         </div>
                 
                 
