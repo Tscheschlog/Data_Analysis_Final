@@ -61,7 +61,7 @@ const setVisualBackgroundImg = async (county) => {
                 `
             );
             document.getElementById('property-dropdown').addEventListener('change', function() {
-                var selectedValue = selectElement.value;
+                var selectedValue = document.getElementById('property-dropdown').value;
                 console.log('Selected option:', selectedValue);
             
             
