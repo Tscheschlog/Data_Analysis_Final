@@ -40,7 +40,7 @@ app.get('/api/stats/:county', (req, res) => {
     .pipe(csv())
     .on('data', (row) => {  
         console.log(row);
-        if(row['county'] == county)    
+        if(row['place'] == county)    
           rows.push(row);
     })
     .on('end', () => {
