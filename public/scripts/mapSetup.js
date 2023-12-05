@@ -1,5 +1,6 @@
 let map = L.map('map').setView([27.9944024, -81.760254], 7); // Set the initial view to Florida
 let markers = []; 
+let propertyBook = {};
 
 // #################################################################
 // #### Onclick County Logic #######################################
@@ -38,18 +39,21 @@ const setVisualBackgroundImg = async (county) => {
             console.log(data);
             const options = data.map(option => 
                 {
-                    if (option.ADDRESS != undefined && option.ADDRESS != "")
+                    if (option.ADDRESS != undefined && option.ADDRESS != "") {
+                        propertyBook[option.ADDRESS] = option;
                         return `<option value="${option.ADDRESS}">${option.ADDRESS}</option>`
+                    }
                 }
-                );
+            );
 
             $('#view-tab').html(
                 `
                 <div class="visual-body form-group">
-                    <select id="dropdown" class="form-control">${options.join('')}</select></div>
+                    <select id="property-dropdown" class="form-control">${options.join('')}</select></div>
                     <div id="current-house-view">
                         <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label class="ml-2">Price</label></span>
+                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Price</label></span>
+                            <p id="price-tag"></p>
                         </div>
                 
                 
@@ -194,6 +198,14 @@ toggleCheckbox.addEventListener('change', function () {
     }
 });
 
+document.getElementById('property-dropdown').addEventListener('change', function() {
+    var selectedValue = selectElement.value;
+    console.log('Selected option:', selectedValue);
+
+
+    document.getElementById('price-tag').value = propertyBook[selectedValue].PRICE;
+
+});
 // #################################################################
 // #### Line Graph Logic ###########################################
 // #################################################################
