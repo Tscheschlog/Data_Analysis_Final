@@ -14,7 +14,7 @@ const setPropertyView = () => {
     document.getElementById('square-feet-tag').innerText = propertyBook[selectedValue]['SQUARE FEET'] + " square feet";
     document.getElementById('beds-tag').innerText = propertyBook[selectedValue].BEDS;
     document.getElementById('baths-tag').innerText = propertyBook[selectedValue].BATHS;
-    
+
 }
 
 const setVisualBackgroundImg = async (county) => {
@@ -37,8 +37,6 @@ const setVisualBackgroundImg = async (county) => {
         '<div class="visual-body">' +
         '<img src="assets/sales_vs_income_' + lowerCountyName + '.png" /></div>'
     );
-    let minYear = -1;
-    let maxYear = -1;
     fetch('/api/props/' + lowerCountyName)
         .then(response => {
             if (!response.ok) {
@@ -119,6 +117,7 @@ fetch('/api/counties_json')
                     click: function (e) {
                         console.log(layer.feature.properties.NAMELSADCO.toLowerCase().substring(0, layer.feature.properties.NAMELSADCO.indexOf("County")).trim());
                         setVisualBackgroundImg(layer.feature.properties.NAMELSADCO); 
+                        setPropertyView();
                         removeMarkers();
                         
                         fetch('/api/map_pins/' + layer.feature.properties.NAMELSADCO.toLowerCase().substring(0, layer.feature.properties.NAMELSADCO.indexOf("County")).trim())
@@ -129,8 +128,6 @@ fetch('/api/counties_json')
                             .catch(error => {
                                 console.error('Error fetching data:', error);
                             });
-                        setPropertyView();
-                        
                     }
                 });
             }
