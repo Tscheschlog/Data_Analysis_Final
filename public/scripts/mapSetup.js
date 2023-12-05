@@ -105,7 +105,7 @@ const setVisualBackgroundImg = async (county) => {
             ten_year: 0
         };
 
-        let data = fetch('/api/stats/' + county)
+        let data = await fetch('/api/stats/' + county)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -115,7 +115,7 @@ const setVisualBackgroundImg = async (county) => {
                     .then(data => {
                         console.log(data);
                     })
-        countyStats.mean = data[10]['realmediansalesprice'];
+        countyStats.mean = data[20]['realmediansalesprice'];
         countyStats.one_year = (data[20].realmediansalesprice - data[19].realmediansalesprice) / data[20].realmediansalesprice * 100;
         countyStats.three_year = (data[20].realmediansalesprice - data[17].realmediansalesprice) / data[20].realmediansalesprice * 100;
         countyStats.five_year = (data[20].realmediansalesprice - data[15].realmediansalesprice) / data[20].realmediansalesprice * 100;
