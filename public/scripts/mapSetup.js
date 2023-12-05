@@ -212,13 +212,13 @@ fetch('/api/counties_json')
                     click: function (e) {
                         console.log(layer.feature.properties.NAMELSADCO.toLowerCase().substring(0, layer.feature.properties.NAMELSADCO.indexOf("County")).trim());
                         setVisualBackgroundImg(layer.feature.properties.NAMELSADCO); 
-                        setPropertyView();
                         removeMarkers();
                         
                         fetch('/api/map_pins/' + layer.feature.properties.NAMELSADCO.toLowerCase().substring(0, layer.feature.properties.NAMELSADCO.indexOf("County")).trim())
                             .then(response => response.text())
                             .then(data => {
                                 createMarkers(data);
+                                setPropertyView();
                             })
                             .catch(error => {
                                 console.error('Error fetching data:', error);
