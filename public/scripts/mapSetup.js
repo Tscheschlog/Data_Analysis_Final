@@ -115,6 +115,8 @@ const setVisualBackgroundImg = async (county) => {
                     .then(data => {
                         console.log(data);
                     })
+        console.log('Data fetched:');
+        console.log(data);
         countyStats.mean = data[20]['realmediansalesprice'];
         countyStats.one_year = (data[20].realmediansalesprice - data[19].realmediansalesprice) / data[20].realmediansalesprice * 100;
         countyStats.three_year = (data[20].realmediansalesprice - data[17].realmediansalesprice) / data[20].realmediansalesprice * 100;
