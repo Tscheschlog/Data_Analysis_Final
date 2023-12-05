@@ -76,7 +76,7 @@ const setVisualBackgroundImg = async (county) => {
                             <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Baths</label></span>
                             <p id="baths-tag" class="form-control m-0"></p>
                         </div>
-                        <div id="learn-more-tag"><a id="learn-anchor">Learn More</a></div>
+                        <div class="mt-2" id="learn-more-tag"><a id="learn-anchor">Learn More</a></div>
                     </div>
                 </div>
                 `
