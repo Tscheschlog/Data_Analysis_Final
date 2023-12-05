@@ -53,7 +53,7 @@ const setVisualBackgroundImg = async (county) => {
                     <div id="current-house-view">
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Price</label></span>
-                            <p id="price-tag" class="form-control"></p>
+                            <p id="price-tag" class="form-control m-0"></p>
                         </div>
                 
                 
@@ -65,7 +65,7 @@ const setVisualBackgroundImg = async (county) => {
                 console.log('Selected option:', selectedValue);
             
             
-                document.getElementById('price-tag').innerText = propertyBook[selectedValue].PRICE;
+                document.getElementById('price-tag').innerText = "$"+ propertyBook[selectedValue].PRICE + ".00";
             });
         })
         .catch(error => {
