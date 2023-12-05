@@ -97,16 +97,28 @@ const setVisualBackgroundImg = async (county) => {
             console.error('Error fetching options:', error);
         });
 
-        fetch('/api/stats/' + county)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-            });
+        let countyStats = {
+            mean: 0,
+            one_year: 0,
+            three_year: 0,
+            five_year: 0
+        };
+
+        let data = fetch('/api/stats/' + county)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data);
+                    })
+        countyStats.mean = data[20].realmediansalesprice;
+        countyStats.one_year = (data[20].realmediansalesprice - data[19].realmediansalesprice) / data[20].realmediansalesprice * 100;
+        countyStats.three_year = (data[20].realmediansalesprice - data[17].realmediansalesprice) / data[20].realmediansalesprice * 100;
+        countyStats.five_year = (data[20].realmediansalesprice - data[15].realmediansalesprice) / data[20].realmediansalesprice * 100;
+        
 
         $('#stats-tab').html(
             `
@@ -114,23 +126,23 @@ const setVisualBackgroundImg = async (county) => {
                 <div class="p-2">${county}'s Statistics</div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Mean Price</label></span>
-                    <p id="mean-tag" class="form-control m-0"></p>
+                    <p id="mean-tag" class="form-control m-0">${countyStats.mean}</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 1 Year</label></span>
-                    <p id="one-year-tag" class="form-control m-0"></p>
+                    <p id="one-year-tag" class="form-control m-0">${countyStats.mean}</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 3 Years</label></span>
-                    <p id="three-year-tag" class="form-control m-0"></p>
+                    <p id="three-year-tag" class="form-control m-0">${countyStats.mean}</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 5 Years</label></span>
-                    <p id="five-year-tag" class="form-control m-0"></p>
+                    <p id="five-year-tag" class="form-control m-0">${countyStats.mean}</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 10 Years</label></span>
-                    <p id="ten-year-tag" class="form-control m-0"></p>
+                    <p id="ten-year-tag" class="form-control m-0">${countyStats.mean}</p>
                 </div>
             </div>
             `

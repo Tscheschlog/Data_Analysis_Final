@@ -29,22 +29,13 @@ app.get('/api/stats/:county', (req, res) => {
   const filePath = path.join(__dirname, '/backend/data/median_sales_price_2020.csv');
   const rows = [];
 
-  let data = {
-    mean: 0,
-    one_year: 0,
-    three_year: 0,
-    five_year: 0
-  };
-
   fs.createReadStream(filePath)
     .pipe(csv())
     .on('data', (row) => {  
-        console.log(row);
         if(row['place'] == county)    
           rows.push(row);
     })
     .on('end', () => {
-      // Send the filtered rows as JSON
       res.json(rows);
     })
     .on('error', (error) => {
