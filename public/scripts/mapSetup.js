@@ -186,7 +186,7 @@ function removeMarkers() {
 //         console.error('Error fetching data:', error);
 //     });
 
-const toggleCheckbox = document.getElementById('toggleMarkers');
+const toggleCheckbox = $('#toggleMarkers');
 toggleCheckbox.addEventListener('change', function () {
     if (this.checked) {
         // Show markers
