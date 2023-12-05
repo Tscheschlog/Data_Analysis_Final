@@ -6,8 +6,16 @@ let propertyBook = {};
 // #### Onclick County Logic #######################################
 // #################################################################
 
-const setPropertyView = () => {
-    var selectedValue = document.getElementById('property-dropdown').value;
+const setPropertyView = (addr=null) => {
+
+    if(addr) {
+        var selectedValue = addr;    
+        document.getElementById('property-dropdown').value = addr;
+    }
+    else {
+        var selectedValue = document.getElementById('property-dropdown').value;
+    }
+    
     console.log('Selected option:', selectedValue);
 
     document.getElementById('price-tag').innerText = "$"+ propertyBook[selectedValue].PRICE + ".00";
@@ -263,6 +271,11 @@ function createMarkers(data) {
             const marker = L.marker([LATITUDE, LONGITUDE])
                 .bindPopup(`<div class="county-popup"><b>${ADDRESS}</b><br>${PRICE}, ${BEDS} beds, ${BATHS} baths</div>`)
                 .addTo(map);
+            marker.on('click', function (e) {
+            
+                setPropertyView(ADDRESS);
+            
+            });
             markers.push(marker);
         }
     });
