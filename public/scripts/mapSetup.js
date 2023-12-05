@@ -59,22 +59,15 @@ const setVisualBackgroundImg = async (county) => {
                 <div class="visual-body form-group">
                     <select id="property-dropdown" class="form-control">${options.join('')}</select></div>
                     <div id="current-house-view">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Price</label></span>
-                                    <p id="price-tag" class="form-control m-0"></p>
-                                </div>
-                            </div>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Price</label></span>
+                            <p id="price-tag" class="form-control m-0"></p>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Square Feet</label></span>
-                                    <p id="square-feet-tag" class="form-control m-0"></p>
-                                </div>
-                            </div>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Square Feet</label></span>
+                            <p id="square-feet-tag" class="form-control m-0"></p>
                         </div>
+                    </div>
                 </div>
                 `
             );
