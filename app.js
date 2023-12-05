@@ -27,6 +27,7 @@ app.get('/api/enum',  (req, res) => {
 app.get('/api/stats/:county', (req, res) => {
   const county = req.params.county;
   const filePath = path.join(__dirname, '/backend/data/median_sales_price_2020.csv');
+  const rows = [];
 
   let data = {
     mean: 0,
@@ -35,7 +36,21 @@ app.get('/api/stats/:county', (req, res) => {
     five_year: 0
   };
 
-
+  fs.createReadStream(filePath)
+    .pipe(csv())
+    .on('data', (row) => {  
+        console.log(row);
+        if(row['county'] == county)    
+          rows.push(row);
+    })
+    .on('end', () => {
+      // Send the filtered rows as JSON
+      res.json(rows);
+    })
+    .on('error', (error) => {
+      console.error('Error reading CSV:', error);
+      res.status(500).send('Internal Server Error');
+    });
 
 
 });
