@@ -101,7 +101,8 @@ const setVisualBackgroundImg = async (county) => {
             mean: 0,
             one_year: 0,
             three_year: 0,
-            five_year: 0
+            five_year: 0,
+            ten_year: 0
         };
 
         let data = fetch('/api/stats/' + county)
@@ -118,6 +119,7 @@ const setVisualBackgroundImg = async (county) => {
         countyStats.one_year = (data[20].realmediansalesprice - data[19].realmediansalesprice) / data[20].realmediansalesprice * 100;
         countyStats.three_year = (data[20].realmediansalesprice - data[17].realmediansalesprice) / data[20].realmediansalesprice * 100;
         countyStats.five_year = (data[20].realmediansalesprice - data[15].realmediansalesprice) / data[20].realmediansalesprice * 100;
+        countyStats.five_year = (data[20].realmediansalesprice - data[10].realmediansalesprice) / data[20].realmediansalesprice * 100;
         
 
         $('#stats-tab').html(
@@ -130,7 +132,7 @@ const setVisualBackgroundImg = async (county) => {
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 1 Year</label></span>
-                    <p id="one-year-tag" class="form-control m-0">${countyStats.mean}</p>
+                    <p id="one-year-tag" class="form-control m-0">${countyStats.one_year}</p>
                 </div>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-percent"></i><label>Change Past 3 Years</label></span>
