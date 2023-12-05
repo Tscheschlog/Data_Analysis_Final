@@ -6,6 +6,14 @@ let propertyBook = {};
 // #### Onclick County Logic #######################################
 // #################################################################
 
+const setPropertyView = () => {
+    var selectedValue = document.getElementById('property-dropdown').value;
+    console.log('Selected option:', selectedValue);
+
+
+    document.getElementById('price-tag').innerText = "$"+ propertyBook[selectedValue].PRICE + ".00";
+}
+
 const setVisualBackgroundImg = async (county) => {
 
     $('#stats-tab').html(
@@ -51,21 +59,24 @@ const setVisualBackgroundImg = async (county) => {
                 <div class="visual-body form-group">
                     <select id="property-dropdown" class="form-control">${options.join('')}</select></div>
                     <div id="current-house-view">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Price</label></span>
-                            <p id="price-tag" class="form-control m-0"></p>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Price</label></span>
+                                <p id="price-tag" class="form-control m-0"></p>
+                            </div>
                         </div>
-                
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Square Feet</label></span>
+                                <p id="square-feet-tag" class="form-control m-0"></p>
+                            </div>
+                        </div>
                 
                 </div>
                 `
             );
             document.getElementById('property-dropdown').addEventListener('change', function() {
-                var selectedValue = document.getElementById('property-dropdown').value;
-                console.log('Selected option:', selectedValue);
-            
-            
-                document.getElementById('price-tag').innerText = "$"+ propertyBook[selectedValue].PRICE + ".00";
+                setPropertyView();
             });
         })
         .catch(error => {
@@ -110,7 +121,7 @@ fetch('/api/counties_json')
                             .catch(error => {
                                 console.error('Error fetching data:', error);
                             });
-
+                        setPropertyView();
                         
                     }
                 });
