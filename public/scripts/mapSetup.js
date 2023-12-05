@@ -61,19 +61,19 @@ const setVisualBackgroundImg = async (county) => {
                     <select id="property-dropdown" class="form-control">${options.join('')}</select></div>
                     <div id="current-house-view">
                         <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Price</label></span>
+                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label style="margin-right: 5px;>Price</label></span>
                             <p id="price-tag" class="form-control m-0"></p>
                         </div>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Square Feet</label></span>
+                            <span class="input-group-text"><i class="bi bi-gear"></i><label style="margin-right: 5px;>Square Feet</label></span>
                             <p id="square-feet-tag" class="form-control m-0"></p>
                         </div>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Beds</label></span>
+                            <span class="input-group-text"><i class="bi bi-gear"></i><label style="margin-right: 5px;>Beds</label></span>
                             <p id="beds-tag" class="form-control m-0"></p>
                         </div>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Baths</label></span>
+                            <span class="input-group-text"><i class="bi bi-gear"></i><label style="margin-right: 5px;">Baths</label></span>
                             <p id="baths-tag" class="form-control m-0"></p>
                         </div>
                         <div class="mt-2" id="learn-more-tag"><a id="learn-anchor">Learn More</a></div>
