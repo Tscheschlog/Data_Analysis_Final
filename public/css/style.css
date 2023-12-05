@@ -65,6 +65,7 @@ body { /* Credit: Ashley fernandez */
     justify-content: center;
     align-items: center;
     background-color: white;
+    border-radius: 0px 8px 8px 8px;
 }
 
 img {
