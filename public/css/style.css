@@ -17,6 +17,10 @@ body { /* Credit: Ashley fernandez */
     width: 30%;
 }
 
+label {
+    padding-left: 5px;
+}
+
 #learn-more-tag {
     color: blue;
     display: flex;
