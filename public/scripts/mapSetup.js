@@ -13,6 +13,8 @@ const setPropertyView = () => {
 
     document.getElementById('price-tag').innerText = "$"+ propertyBook[selectedValue].PRICE + ".00";
     document.getElementById('square-feet-tag').innerText = propertyBook[selectedValue]['SQUARE FEET'] + " square feet";
+    document.getElementById('beds-tag').innerText = propertyBook[selectedValue].BEDS;
+    document.getElementById('baths-tag').innerText = propertyBook[selectedValue].BATHS;
 }
 
 const setVisualBackgroundImg = async (county) => {
@@ -67,6 +69,14 @@ const setVisualBackgroundImg = async (county) => {
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Square Feet</label></span>
                             <p id="square-feet-tag" class="form-control m-0"></p>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Beds</label></span>
+                            <p id="beds-tag" class="form-control m-0"></p>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Baths</label></span>
+                            <p id="baths-tag" class="form-control m-0"></p>
                         </div>
                     </div>
                 </div>
