@@ -26,11 +26,13 @@ app.get('/api/enum',  (req, res) => {
 
 app.get('/api/stats/:county', (req, res) => {
   const county = req.params.county;
+  const filePath = path.join(__dirname, '/backend/data/median_sales_price_2020.csv');
+
   let data = {
     mean: 0,
     one_year: 0,
-    one_year: 0,
-    one_year: 0
+    three_year: 0,
+    five_year: 0
   };
 
 
