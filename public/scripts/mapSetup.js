@@ -60,6 +60,13 @@ const setVisualBackgroundImg = async (county) => {
                 </div>
                 `
             );
+            document.getElementById('property-dropdown').addEventListener('change', function() {
+                var selectedValue = selectElement.value;
+                console.log('Selected option:', selectedValue);
+            
+            
+                document.getElementById('price-tag').value = propertyBook[selectedValue].PRICE;
+            });
         })
         .catch(error => {
             console.error('Error fetching options:', error);
@@ -198,14 +205,7 @@ toggleCheckbox.addEventListener('change', function () {
     }
 });
 
-document.getElementById('property-dropdown').addEventListener('change', function() {
-    var selectedValue = selectElement.value;
-    console.log('Selected option:', selectedValue);
 
-
-    document.getElementById('price-tag').value = propertyBook[selectedValue].PRICE;
-
-});
 // #################################################################
 // #### Line Graph Logic ###########################################
 // #################################################################
