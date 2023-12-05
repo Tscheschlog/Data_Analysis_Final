@@ -46,16 +46,16 @@ const setVisualBackgroundImg = async (county) => {
             const options = data.map(option => 
                 {
                     if(minYear == -1 && maxYear == -1) {
-                        minYear = option['YEAR BUILT'];
-                        maxYear = option['YEAR BUILT'];
+                        minYear = parseInt(option['YEAR BUILT']);
+                        maxYear = parseInt(option['YEAR BUILT']);
                     }
                     if (option.ADDRESS != undefined && option.ADDRESS != "")
                         return `<option value="${option.ADDRESS}">${option.ADDRESS}</option>`
-                    if(minYear > option['YEAR BUILT']) {
-                        minYear = option['YEAR BUILT'];
+                    if(minYear > parseInt(option['YEAR BUILT'])) {
+                        minYear = parseInt(option['YEAR BUILT']);
                     }
-                    if(maxYear < option['YEAR BUILT']) {
-                        maxYear = option['YEAR BUILT'];
+                    if(maxYear < parseInt(option['YEAR BUILT'])) {
+                        maxYear = parseInt(option['YEAR BUILT']);
                     }
                 }
                 );
