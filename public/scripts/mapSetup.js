@@ -10,11 +10,11 @@ const setPropertyView = () => {
     var selectedValue = document.getElementById('property-dropdown').value;
     console.log('Selected option:', selectedValue);
 
-
     document.getElementById('price-tag').innerText = "$"+ propertyBook[selectedValue].PRICE + ".00";
     document.getElementById('square-feet-tag').innerText = propertyBook[selectedValue]['SQUARE FEET'] + " square feet";
     document.getElementById('beds-tag').innerText = propertyBook[selectedValue].BEDS;
     document.getElementById('baths-tag').innerText = propertyBook[selectedValue].BATHS;
+    
 }
 
 const setVisualBackgroundImg = async (county) => {
@@ -78,6 +78,7 @@ const setVisualBackgroundImg = async (county) => {
                             <span class="input-group-text"><i class="bi bi-tags-fill"></i><label>Baths</label></span>
                             <p id="baths-tag" class="form-control m-0"></p>
                         </div>
+                        <div id="learn-more-tag">Learn More</div>
                     </div>
                 </div>
                 `
