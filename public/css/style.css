@@ -13,6 +13,10 @@ body { /* Credit: Ashley fernandez */
     animation: movement 10s linear infinite;
 }
 
+.input-group-text {
+    width: 40%;
+}
+
 #learn-more-tag {
     color: blue;
     display: flex;
