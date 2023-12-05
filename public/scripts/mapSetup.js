@@ -44,8 +44,18 @@ const setVisualBackgroundImg = async (county) => {
                 );
 
             $('#view-tab').html(
-                '<div class="visual-body form-group">' +
-                `<select id="dropdown" class="form-control">${options.join('')}</select></div>`
+                `
+                <div class="visual-body form-group">
+                    <select id="dropdown" class="form-control">${options.join('')}</select></div>
+                    <div id="current-house-view">
+                        <div class="form-group">
+                            <i class="bi bi-tags-fill"></i>
+                            <span class="form-control">${123}</span>
+                        </div>
+                
+                
+                </div>
+                `
             );
         })
         .catch(error => {
@@ -90,6 +100,8 @@ fetch('/api/counties_json')
                             .catch(error => {
                                 console.error('Error fetching data:', error);
                             });
+
+                        
                     }
                 });
             }
