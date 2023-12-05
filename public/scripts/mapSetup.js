@@ -15,7 +15,11 @@ const setPropertyView = () => {
     document.getElementById('beds-tag').innerText = propertyBook[selectedValue].BEDS;
     document.getElementById('baths-tag').innerText = propertyBook[selectedValue].BATHS;
     document.getElementById('learn-anchor').href = propertyBook[selectedValue]['URL (SEE https://www.redfin.com/buy-a-home/comparative-market-analysis FOR INFO ON PRICING)'];
-}
+}   
+
+document.getElementById('view-nav-tab').addEventListener('click', function() {
+    setPropertyView();
+});
 
 const setVisualBackgroundImg = async (county) => {
 
