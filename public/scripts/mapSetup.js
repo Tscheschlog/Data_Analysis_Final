@@ -38,21 +38,10 @@ const setVisualBackgroundImg = async (county) => {
             console.log(data);
             const options = data.map(option => 
                 {
-                    if(minYear == -1 && maxYear == -1) {
-                        minYear = parseInt(option['YEAR BUILT']);
-                        maxYear = parseInt(option['YEAR BUILT']);
-                    }
                     if (option.ADDRESS != undefined && option.ADDRESS != "")
                         return `<option value="${option.ADDRESS}">${option.ADDRESS}</option>`
-                    if(minYear > parseInt(option['YEAR BUILT'])) {
-                        minYear = parseInt(option['YEAR BUILT']);
-                    }
-                    if(maxYear < parseInt(option['YEAR BUILT'])) {
-                        maxYear = parseInt(option['YEAR BUILT']);
-                    }
                 }
                 );
-                console.log("min: " + minYear + "\nmax: " + maxYear);
 
             $('#view-tab').html(
                 '<div class="visual-body form-group">' +
