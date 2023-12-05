@@ -29,6 +29,7 @@ body { /* Credit: Ashley fernandez */
     height: 40%;
     width: 100%;
     padding: 5px;
+    background-color: white;
 }
 .nav-item {
     height: 35px;
